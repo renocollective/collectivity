@@ -15,3 +15,14 @@ gem "jquery-rails"
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :development, :test do
+  # guard
+  gem "growl"
+  gem "rb-fsevent"
+  gem "guard-rspec"
+  gem "spork"
+  gem "guard-spork"
+  gem "guard-bundler"
+  gem "guard-annotate"
+end
