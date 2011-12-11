@@ -1,37 +1,60 @@
-# Configure Rails Envinronment
-ENV["RAILS_ENV"] = "test"
-require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+require 'rubygems'
+require 'spork'
 
-require 'rspec/rails'
+Spork.prefork do
 
-Rails.backtrace_cleaner.remove_silencers!
+  # Configure Rails Envinronment
+  ENV["RAILS_ENV"] = "test"
+  require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 
-ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
+  require 'rspec/rails'
 
-# Requires supporting ruby files with custom matchers and macros, etc,
-# in spec/support/ and its subdirectories.
-Dir[File.join(ENGINE_RAILS_ROOT, "spec/support/**/*.rb")].each {|f| require f }
+  Rails.backtrace_cleaner.remove_silencers!
 
-RSpec.configure do |config|
-  # == Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
-  config.mock_with :rspec
+  ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
 
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # Requires supporting ruby files with custom matchers and macros, etc,
+  # in spec/support/ and its subdirectories.
+  Dir[File.join(ENGINE_RAILS_ROOT, "spec/support/**/*.rb")].each {|f| require f }
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
+  RSpec.configure do |config|
+    # == Mock Framework
+    #
+    # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
+    #
+    # config.mock_with :mocha
+    # config.mock_with :flexmock
+    # config.mock_with :rr
+    config.mock_with :rspec
 
-  # If true, the base class of anonymous controllers will be inferred
-  # automatically. This will be the default behavior in future versions of
-  # rspec-rails.
-  config.infer_base_class_for_anonymous_controllers = false
+    # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+    # config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
+    # If you're not using ActiveRecord, or you'd prefer not to run each of your
+    # examples within a transaction, remove the following line or assign false
+    # instead of true.
+    config.use_transactional_fixtures = true
+
+    # If true, the base class of anonymous controllers will be inferred
+    # automatically. This will be the default behavior in future versions of
+    # rspec-rails.
+    config.infer_base_class_for_anonymous_controllers = false
+  end
+  
 end
+
+Spork.each_run do
+  # This code will be run each time you run your specs.
+  
+end
+
+# --- Instructions ---
+# - Sort through your spec_helper file. Place as much environment loading 
+#   code that you don't normally modify during development in the 
+#   Spork.prefork block.
+# - Place the rest under Spork.each_run block
+# - Any code that is left outside of the blocks will be ran during preforking
+#   and during each_run!
+# - These instructions should self-destruct in 10 seconds.  If they don't,
+#   feel free to delete them.
+#
