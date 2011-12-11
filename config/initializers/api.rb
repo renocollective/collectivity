@@ -1,0 +1,1 @@
+require Collectivity::Engine.root.join("app/api/collectivity/api.rb").to_s

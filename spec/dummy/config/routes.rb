@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
 
-  mount Collectivity::Engine => "/collectivity"
+  mount Collectivity::Engine => "/"
 end

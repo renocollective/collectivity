@@ -1,7 +1,13 @@
 # More info at https://github.com/guard/guard#readme
 
 group "spec" do
-  guard "spork", bundler: true, rspec: true, rspec_env: { "RAILS_ENV" => "test" } do
+  # guard "annotate" do
+  #   watch("db/schema.rb")
+  #   # watch('app/collectivity/models/**/*.rb')
+  #   # watch('config/routes.rb')
+  # end
+
+  guard "spork", :bundler => true, :rspec => true, :rspec_env => { "RAILS_ENV" => "test" } do
     watch('Gemfile')
     watch('Gemfile.lock')
     watch("config/application.rb")
@@ -11,7 +17,7 @@ group "spec" do
     watch("spec/spec_helper.rb")
   end
 
-  guard "rspec", cli: "--color --drb", all_on_start: false do
+  guard "rspec", :cli => "--color --drb", :all_on_start => false do
     watch(%r{^spec/.+_spec\.rb$})
     watch(%r{^lib/(.+)\.rb$})                           { |m| "spec/lib/#{m[1]}_spec.rb" }
     watch("spec/spec_helper.rb")                        { "spec/" }
