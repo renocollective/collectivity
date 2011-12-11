@@ -1,3 +1,5 @@
 = Collectivity
 
+A little Rails engine to bring some sanity to our coworking space.
+
 This project rocks and uses MIT-LICENSE.
