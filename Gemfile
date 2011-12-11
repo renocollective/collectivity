@@ -18,7 +18,6 @@ gem "jquery-rails"
 
 group :development, :test do
   # guard
-  gem "growl"
   gem "rb-fsevent"
   gem "guard-rspec"
   gem "spork"
