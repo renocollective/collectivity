@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "devise"
   s.add_dependency "grape"
+  s.add_dependency "money"
   s.add_dependency "rails", "~> 3.1.3"
 
   # s.add_dependency "jquery-rails"

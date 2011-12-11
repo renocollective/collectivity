@@ -9,7 +9,6 @@ class AddDeviseToCollectivityMembers < ActiveRecord::Migration
       t.rememberable
       t.trackable
       t.token_authenticatable
-      t.timestamps
     end
 
     add_index :collectivity_members, :email,                :unique => true
